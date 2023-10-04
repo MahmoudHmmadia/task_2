@@ -18,11 +18,9 @@ const io = new Server(server, {
 });
 app.use(express.static("public"));
 app.get("/", (req, res) => {
-  res.redirect(`/${v4()}`);
+  res.render("room");
 });
-app.get("/:room", (req, res) => {
-  res.render("room", { roomId: req.params.room });
-});
+
 io.on("connection", (socket) => {
   socket.on("join-room", (rId, uId) => {
     socket.join(rId);
