@@ -15,7 +15,6 @@ document.querySelector(".btn").addEventListener("click", () => {
       .then((stream) => {
         const myPeer = new Peer(undefined, {
           host: "/",
-          path: "/",
           port: "3001",
         });
         myPeer.on("open", (id) => {

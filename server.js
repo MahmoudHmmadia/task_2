@@ -8,7 +8,6 @@ const peerServer = PeerServer({
   port: 3001,
 });
 const app = express();
-app.use("/peerjs", peerServer);
 
 app.set("view engine", "ejs");
 const server = http.Server(app);
