@@ -4,11 +4,9 @@ import http from "http";
 import { PeerServer } from "peer";
 const peerServer = PeerServer({
   path: "/",
-  corsOptions: true,
   port: 3001,
 });
 const app = express();
-app.use("/peerjs", peerServer);
 
 app.set("view engine", "ejs");
 const server = http.Server(app);
