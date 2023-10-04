@@ -1,6 +1,6 @@
 import express from "express";
 import { Server } from "socket.io";
-import http from "http";
+import https from "https";
 import { PeerServer, ExpressPeerServer } from "peer";
 import cors from "cors";
 // const peerServer = PeerServer({
@@ -10,7 +10,7 @@ import cors from "cors";
 const app = express();
 app.use(cors({ origin: true, credentials: true, optionsSuccessStatus: 200 }));
 app.set("view engine", "ejs");
-const server = http.createServer(app);
+const server = https.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: true,
