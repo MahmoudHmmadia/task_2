@@ -6,7 +6,6 @@ const peerServer = PeerServer({
   path: "/",
   corsOptions: true,
   port: 3001,
-  key: "mahmoudHmmadia",
 });
 const app = express();
 app.use("/peerjs", peerServer);
