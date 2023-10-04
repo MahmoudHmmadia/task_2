@@ -15,7 +15,7 @@ document.querySelector(".btn").addEventListener("click", () => {
       .then((stream) => {
         const myPeer = new Peer({
           host: "/",
-          port: 3001,
+          port: 3000,
         });
         myPeer.on("open", (id) => {
           socket.emit("join-room", room, id);

@@ -1,14 +1,14 @@
 import express from "express";
 import { Server } from "socket.io";
 import http from "http";
-import { PeerServer } from "peer";
-const peerServer = PeerServer({
-  path: "/",
-  port: 3001,
-});
+import { PeerServer, ExpressPeerServer } from "peer";
+// const peerServer = PeerServer({
+//   path: "/",
+//   port: 3001,
+// });
 const app = express();
 app.set("view engine", "ejs");
-const server = http.Server(app);
+const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: true,
@@ -29,10 +29,18 @@ io.on("connection", (socket) => {
     });
   });
 });
-app.use("/peerjs", (req, res, next) => {
-  peerServer.listen(() => {
-    console.log("from peer");
-    next();
-  });
-});
+app.use(
+  ExpressPeerServer(server, {
+    proxied: true,
+    debug: true,
+    path: "/",
+    ssl: {},
+  })
+);
+// app.use("/peerjs", (req, res, next) => {
+//   peerServer.listen(() => {
+//     console.log("from peer");
+//     next();
+//   });
+// });
 server.listen(3000);
