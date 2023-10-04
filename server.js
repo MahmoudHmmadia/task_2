@@ -7,7 +7,6 @@ const peerServer = PeerServer({
   port: 3001,
 });
 const app = express();
-
 app.set("view engine", "ejs");
 const server = http.Server(app);
 const io = new Server(server, {
@@ -30,9 +29,10 @@ io.on("connection", (socket) => {
     });
   });
 });
-// app.use("/peerjs", peerServer);
-server.listen(3000, () => {
+app.use("/peerjs", (req, res, next) => {
   peerServer.listen(() => {
-    console.log("running");
+    console.log("from peer");
+    next();
   });
 });
+server.listen(3000);
