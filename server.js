@@ -7,8 +7,9 @@ const peerServer = PeerServer({
   corsOptions: true,
   port: 3001,
 });
-app.use("/peerjs", peerServer);
 const app = express();
+app.use("/peerjs", peerServer);
+
 app.set("view engine", "ejs");
 const server = http.Server(app);
 const io = new Server(server, {
