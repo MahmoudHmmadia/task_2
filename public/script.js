@@ -2,6 +2,7 @@ const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
+let Peer = window.Peer;
 document.querySelector(".btn").addEventListener("click", () => {
   const room = document.querySelector(".room").value;
   if (room !== "") {
@@ -16,6 +17,8 @@ document.querySelector(".btn").addEventListener("click", () => {
         const myPeer = new Peer({
           host: "/",
           port: 3000,
+          debug: 3,
+          secure: false,
         });
         myPeer.on("open", (id) => {
           socket.emit("join-room", room, id);
