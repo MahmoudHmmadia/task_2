@@ -18,6 +18,7 @@ document.querySelector(".btn").addEventListener("click", () => {
           host: "/",
           port: 3000,
           debug: 3,
+          path: "/",
           secure: false,
         });
         myPeer.on("open", (id) => {

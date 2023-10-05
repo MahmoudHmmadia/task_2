@@ -1,12 +1,17 @@
-import express from "express";
-import { Server } from "socket.io";
-import http from "http";
-import { PeerServer, ExpressPeerServer } from "peer";
-import cors from "cors";
+// import express from "express";
+// import { Server } from "socket.io";
+// import http from "http";
+// import { ExpressPeerServer } from "peer";
+// import cors from "cors";
 // const peerServer = PeerServer({
 //   path: "/",
 //   port: 3001,
 // });
+const express = require("express");
+const { Server } = require("socket.io");
+const { ExpressPeerServer } = require("peer");
+const http = require("http");
+const cors = require("cors");
 const app = express();
 app.use(cors({ origin: true, credentials: true, optionsSuccessStatus: 200 }));
 app.set("view engine", "ejs");
@@ -40,4 +45,7 @@ const expressPeerServer = ExpressPeerServer(server, {
   },
 });
 app.use(expressPeerServer);
-server.listen(3000, () => {});
+
+server.listen(process.env.PORT, () => {
+  console.log("asd");
+});
