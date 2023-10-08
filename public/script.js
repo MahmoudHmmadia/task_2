@@ -19,7 +19,7 @@ document.querySelector(".btn").addEventListener("click", () => {
           port: 3000,
           debug: 3,
           path: "/",
-          secure: false,
+          secure: true,
         });
         myPeer.on("open", (id) => {
           socket.emit("join-room", room, id);
