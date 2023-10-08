@@ -45,8 +45,7 @@ const expressPeerServer = ExpressPeerServer(server, {
   },
 });
 app.use(expressPeerServer);
-app.use("/peerjs", expressPeerServer);
 
-server.listen(process.env.PORT, () => {
+server.listen(process.env.PORT || 3002, () => {
   console.log("asd");
 });
