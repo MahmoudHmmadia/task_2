@@ -15,10 +15,9 @@ document.querySelector(".btn").addEventListener("click", () => {
       })
       .then((stream) => {
         const myPeer = new Peer({
-          host: "task-2-om2k.onrender.com",
-          port: 3002,
-          debug: 3,
-          path: "/",
+          host: "task-2-om2k.onrender",
+          // port: 3002,
+          debug: 1,
           secure: true,
         });
         myPeer.on("open", (id) => {
@@ -29,7 +28,6 @@ document.querySelector(".btn").addEventListener("click", () => {
         myPeer.on("call", (call) => {
           call.answer(stream);
           const video = document.createElement("video");
-          video.muted();
           call.on("stream", (userVideoStream) => {
             addVideoStream(video, userVideoStream);
           });
@@ -43,7 +41,6 @@ document.querySelector(".btn").addEventListener("click", () => {
         function connectToNewUser(userId, stream) {
           const call = myPeer.call(userId, stream);
           const video = document.createElement("video");
-          video.muted();
           call.on("stream", (userVideoStream) => {
             addVideoStream(video, userVideoStream);
           });
