@@ -19,6 +19,16 @@ document.querySelector(".btn").addEventListener("click", () => {
           // port: 3002,
           debug: 3,
           secure: true,
+          config: {
+            iceServers: [
+              { url: "stun:stun1.l.google.com:19302" },
+              {
+                url: "turn:numb.viagenie.ca",
+                credential: "muazkh",
+                username: "webrtc@live.com",
+              },
+            ],
+          },
         });
         myPeer.on("open", (id) => {
           socket.emit("join-room", room, id);
