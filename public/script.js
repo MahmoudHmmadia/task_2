@@ -15,7 +15,7 @@ document.querySelector(".btn").addEventListener("click", () => {
       })
       .then((stream) => {
         const myPeer = new Peer({
-          host: "localhost",
+          host: "task-2-om2k.onrender.com",
           port: 3002,
           debug: 3,
           path: "/",
