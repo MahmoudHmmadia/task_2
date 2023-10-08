@@ -2,6 +2,16 @@ const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
+const iceConfiguration = {
+  iceServers: [
+    {
+      urls: "turn:openrelay.metered.ca:80",
+      username: "976776674d5e26c0b97dd685",
+      credentials: "dqwWyHCY+eCXcn8I",
+    },
+  ],
+};
+
 let Peer = window.Peer;
 document.querySelector(".btn").addEventListener("click", () => {
   const room = document.querySelector(".room").value;
@@ -16,9 +26,11 @@ document.querySelector(".btn").addEventListener("click", () => {
       .then((stream) => {
         const myPeer = new Peer({
           host: "task-2-om2k.onrender.com",
+          // host: "localhost",
           // port: 3002,
           debug: 3,
           secure: true,
+          iceConfiguration,
         });
         myPeer.on("open", (id) => {
           socket.emit("join-room", room, id);
