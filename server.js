@@ -36,15 +36,15 @@ io.on("connection", (socket) => {
     });
   });
 });
-const iceConfiguration = {
-  iceServers: [
-    {
-      urls: "turn:openrelay.metered.ca:80",
-      username: "976776674d5e26c0b97dd685",
-      credentials: "dqwWyHCY+eCXcn8I",
-    },
-  ],
-};
+
+const expressPeerServer = ExpressPeerServer(server, {
+  debug: true,
+  path: "/",
+  corsOptions: {
+    origin: true,
+  },
+});
+app.use(expressPeerServer);
 
 server.listen(process.env.PORT || 3002, () => {
   console.log("asd");
