@@ -21,9 +21,8 @@ document.querySelector(".btn").addEventListener("click", () => {
           secure: true,
           config: {
             iceServers: [
-              { url: "stun:stun2.l.google.com:19302" },
-              { url: "stun:stun3.l.google.com:19302" },
-              { url: "stun:stun4.l.google.com:19302" },
+              { url: "stun:stun01.sipphone.com" },
+              { url: "stun:stun.ekiga.net" },
               { url: "stun:stunserver.org" },
               { url: "stun:stun.softjoys.com" },
               { url: "stun:stun.voiparound.com" },
@@ -32,12 +31,12 @@ document.querySelector(".btn").addEventListener("click", () => {
               { url: "stun:stun.voxgratia.org" },
               { url: "stun:stun.xten.com" },
               {
-                url: "turn:numb.viagenie.ca",
-                credential: "muazkh",
-                username: "webrtc@live.com",
+                url: "turn:192.158.29.39:3478?transport=udp",
+                credential: "JZEOEt2V3Qb0y27GRntt2u2PAYA=",
+                username: "28224511:1379330808",
               },
               {
-                url: "turn:192.158.29.39:3478?transport=udp",
+                url: "turn:192.158.29.39:3478?transport=tcp",
                 credential: "JZEOEt2V3Qb0y27GRntt2u2PAYA=",
                 username: "28224511:1379330808",
               },
