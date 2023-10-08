@@ -30,7 +30,7 @@ document.querySelector(".btn").addEventListener("click", () => {
           // port: 3002,
           debug: 3,
           secure: true,
-          iceConfiguration,
+          // iceConfiguration,
         });
         myPeer.on("open", (id) => {
           socket.emit("join-room", room, id);
