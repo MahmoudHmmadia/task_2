@@ -3,7 +3,7 @@ let state = "pro";
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
-// myVideo.muted = true;
+myVideo.muted = true;
 let Peer = window.Peer;
 document.querySelector(".btn").addEventListener("click", () => {
   const room = document.querySelector(".room").value.toLowerCase();
@@ -13,7 +13,10 @@ document.querySelector(".btn").addEventListener("click", () => {
     navigator.mediaDevices
       .getUserMedia({
         video: true,
-        audio: true,
+        audio: {
+          noiseSuppression: true,
+          echoCancellation: true, // Optional: Enable echo cancellation
+        },
       })
       .then((stream) => {
         let myPeer;
@@ -22,7 +25,7 @@ document.querySelector(".btn").addEventListener("click", () => {
             host: "localhost",
             port: 3002,
             debug: 3,
-            secure: true,
+            secure: false,
             config: {
               iceServers: [
                 {
