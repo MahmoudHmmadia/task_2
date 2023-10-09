@@ -1,10 +1,12 @@
+let state = "pro";
+
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
-myVideo.muted = true;
+// myVideo.muted = true;
 let Peer = window.Peer;
 document.querySelector(".btn").addEventListener("click", () => {
-  const room = document.querySelector(".room").value;
+  const room = document.querySelector(".room").value.toLowerCase();
   if (room !== "") {
     if (document.querySelector(".error"))
       document.querySelector(".error").remove();
@@ -14,39 +16,76 @@ document.querySelector(".btn").addEventListener("click", () => {
         audio: true,
       })
       .then((stream) => {
-        const myPeer = new Peer({
-          host: "task-2-om2k.onrender.com",
-          // port: 3002,
-          debug: 3,
-          secure: true,
-          config: {
-            iceServers: [
-              {
-                urls: "stun:stun.relay.metered.ca:80",
-              },
-              {
-                urls: "turn:a.relay.metered.ca:80",
-                username: "976776674d5e26c0b97dd685",
-                credential: "dqwWyHCY+eCXcn8I",
-              },
-              {
-                urls: "turn:a.relay.metered.ca:80?transport=tcp",
-                username: "976776674d5e26c0b97dd685",
-                credential: "dqwWyHCY+eCXcn8I",
-              },
-              {
-                urls: "turn:a.relay.metered.ca:443",
-                username: "976776674d5e26c0b97dd685",
-                credential: "dqwWyHCY+eCXcn8I",
-              },
-              {
-                urls: "turn:a.relay.metered.ca:443?transport=tcp",
-                username: "976776674d5e26c0b97dd685",
-                credential: "dqwWyHCY+eCXcn8I",
-              },
-            ],
-          },
-        });
+        let myPeer;
+        if (state === "dev") {
+          myPeer = new Peer({
+            host: "localhost",
+            port: 3002,
+            debug: 3,
+            secure: true,
+            config: {
+              iceServers: [
+                {
+                  urls: "stun:stun.relay.metered.ca:80",
+                },
+                {
+                  urls: "turn:a.relay.metered.ca:80",
+                  username: "976776674d5e26c0b97dd685",
+                  credential: "dqwWyHCY+eCXcn8I",
+                },
+                {
+                  urls: "turn:a.relay.metered.ca:80?transport=tcp",
+                  username: "976776674d5e26c0b97dd685",
+                  credential: "dqwWyHCY+eCXcn8I",
+                },
+                {
+                  urls: "turn:a.relay.metered.ca:443",
+                  username: "976776674d5e26c0b97dd685",
+                  credential: "dqwWyHCY+eCXcn8I",
+                },
+                {
+                  urls: "turn:a.relay.metered.ca:443?transport=tcp",
+                  username: "976776674d5e26c0b97dd685",
+                  credential: "dqwWyHCY+eCXcn8I",
+                },
+              ],
+            },
+          });
+        } else {
+          myPeer = new Peer({
+            host: "task-2-om2k.onrender.com",
+            // port: 3002,
+            debug: 3,
+            secure: true,
+            config: {
+              iceServers: [
+                {
+                  urls: "stun:stun.relay.metered.ca:80",
+                },
+                {
+                  urls: "turn:a.relay.metered.ca:80",
+                  username: "976776674d5e26c0b97dd685",
+                  credential: "dqwWyHCY+eCXcn8I",
+                },
+                {
+                  urls: "turn:a.relay.metered.ca:80?transport=tcp",
+                  username: "976776674d5e26c0b97dd685",
+                  credential: "dqwWyHCY+eCXcn8I",
+                },
+                {
+                  urls: "turn:a.relay.metered.ca:443",
+                  username: "976776674d5e26c0b97dd685",
+                  credential: "dqwWyHCY+eCXcn8I",
+                },
+                {
+                  urls: "turn:a.relay.metered.ca:443?transport=tcp",
+                  username: "976776674d5e26c0b97dd685",
+                  credential: "dqwWyHCY+eCXcn8I",
+                },
+              ],
+            },
+          });
+        }
         myPeer.on("open", (id) => {
           socket.emit("join-room", room, id);
         });
@@ -74,7 +113,6 @@ document.querySelector(".btn").addEventListener("click", () => {
           call.on("close", () => {
             video.remove();
           });
-
           peers[userId] = call;
         }
         function addVideoStream(video, stream) {
