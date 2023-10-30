@@ -1,5 +1,4 @@
-let state = "pro";
-
+let state = "prod";
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
@@ -26,40 +25,39 @@ document.querySelector(".btn").addEventListener("click", () => {
             port: 3002,
             debug: 3,
             secure: false,
-            config: {
-              iceServers: [
-                {
-                  urls: "stun:stun.relay.metered.ca:80",
-                },
-                {
-                  urls: "turn:a.relay.metered.ca:80",
-                  username: "976776674d5e26c0b97dd685",
-                  credential: "dqwWyHCY+eCXcn8I",
-                },
-                {
-                  urls: "turn:a.relay.metered.ca:80?transport=tcp",
-                  username: "976776674d5e26c0b97dd685",
-                  credential: "dqwWyHCY+eCXcn8I",
-                },
-                {
-                  urls: "turn:a.relay.metered.ca:443",
-                  username: "976776674d5e26c0b97dd685",
-                  credential: "dqwWyHCY+eCXcn8I",
-                },
-                {
-                  urls: "turn:a.relay.metered.ca:443?transport=tcp",
-                  username: "976776674d5e26c0b97dd685",
-                  credential: "dqwWyHCY+eCXcn8I",
-                },
-              ],
-            },
+            // config: {
+            //   iceServers: [
+            //     {
+            //       urls: "stun:stun.relay.metered.ca:80",
+            //     },
+            //     {
+            //       urls: "turn:a.relay.metered.ca:80",
+            //       username: "976776674d5e26c0b97dd685",
+            //       credential: "dqwWyHCY+eCXcn8I",
+            //     },
+            //     {
+            //       urls: "turn:a.relay.metered.ca:80?transport=tcp",
+            //       username: "976776674d5e26c0b97dd685",
+            //       credential: "dqwWyHCY+eCXcn8I",
+            //     },
+            //     {
+            //       urls: "turn:a.relay.metered.ca:443",
+            //       username: "976776674d5e26c0b97dd685",
+            //       credential: "dqwWyHCY+eCXcn8I",
+            //     },
+            //     {
+            //       urls: "turn:a.relay.metered.ca:443?transport=tcp",
+            //       username: "976776674d5e26c0b97dd685",
+            //       credential: "dqwWyHCY+eCXcn8I",
+            //     },
+            //   ],
+            // },
           });
         } else {
           myPeer = new Peer({
-            host: "task-2-om2k.onrender.com",
-            // port: 3002,
+            host: "185.77.96.221",
             debug: 3,
-            secure: true,
+            port: 5000,
             config: {
               iceServers: [
                 {
