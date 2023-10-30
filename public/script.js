@@ -58,6 +58,7 @@ document.querySelector(".btn").addEventListener("click", () => {
             host: "185.77.96.221",
             debug: 3,
             port : 5000,
+            seure:false,
             config: {
               iceServers: [
                 {
