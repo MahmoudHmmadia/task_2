@@ -57,8 +57,8 @@ document.querySelector(".btn").addEventListener("click", () => {
           myPeer = new Peer({
             host: "meet-joybox.com",
             debug: 3,
-          ,
-            prot : 9000,path: '/peerjs',
+            port : 9000,
+            path: '/peerjs',
             config: {
               iceServers: [
                 {
