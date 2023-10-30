@@ -57,8 +57,8 @@ document.querySelector(".btn").addEventListener("click", () => {
           myPeer = new Peer({
             host: "185.77.96.221",
             debug: 3,
-            sercure:false,
-            port: 5000,
+            sercure:true,
+            port: 4000,
             config: {
               iceServers: [
                 {
